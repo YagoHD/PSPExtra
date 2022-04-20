@@ -17,16 +17,16 @@ public class Cliente {
         final int PUERTO = 5000;
         DataInputStream entrada;
         DataOutputStream salida;
-        Socket sck=null;
+        Socket conexion=null;
         try{
             System.out.println("Introduce el numero a averiguar el cuadrado: ");
             Scanner sc= new Scanner(System.in);
             int numero = sc.nextInt();
             //creamos el socket
-            sck = new Socket(HOST,PUERTO);
+            conexion = new Socket(HOST,PUERTO);
             //Extraemos los streams de entrada y salida
-            entrada = new DataInputStream(sck.getInputStream());
-            salida = new DataOutputStream(sck.getOutputStream());
+            entrada = new DataInputStream(conexion.getInputStream());
+            salida = new DataOutputStream(conexion.getOutputStream());
             //Introducimos el numeor anteriormente pedido
             salida.writeInt(numero);
             //Leemos el resultado final
@@ -40,7 +40,7 @@ public class Cliente {
             System.err.println("Se ha producido la excepcion: "+e);
         }
         try{
-            if (sck!=null) sck.close();
+            if (conexion!=null) conexion.close();
         }catch(IOException ioe){
             System.err.println("Error al cerrar el socket: "+ioe);
         }
