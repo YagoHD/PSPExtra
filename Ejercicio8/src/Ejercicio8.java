@@ -21,10 +21,11 @@ public class Ejercicio8 extends Thread{
         Ejercicio8 h4 = new Ejercicio8(4);
         Ejercicio8 h5 = new Ejercicio8(5);
         
-        h1.start();h2.start();h3.start();h4.start();h5.start();
+        h1.start();h2.start();h3.start();
+        try {h1.join();h2.join();h3.join();} catch (Exception e) {}
         
-        try {h1.join();h2.join();h3.join();h4.join();h5.join();} catch (Exception e) {}
-        
+        h4.start();h5.start();  
+        try {h4.join();h5.join();} catch (Exception e) {}
         f=d-e;
         System.out.println("El valor de f es de: "+f);
     }
