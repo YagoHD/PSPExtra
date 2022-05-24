@@ -1,5 +1,3 @@
-import java.io.*;
-import java.net.*;
 import java.util.Scanner;
 
 public class Ejercicio1 extends Thread{
