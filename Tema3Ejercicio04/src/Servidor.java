@@ -15,14 +15,15 @@ public class Servidor {
         try{
             servidor = new ServerSocket(PUERTO);
             System.out.println("Esperando una conexion...");
-        
+            conexion = servidor.accept();
+            System.out.println("Cliente conectado");
+            entrada = new DataInputStream(conexion.getInputStream());
+            salida = new DataOutputStream(conexion.getOutputStream());
             while(numero!=0){
-                conexion = servidor.accept();
-                System.out.println("Cliente conectado");
-                entrada = new DataInputStream(conexion.getInputStream());
-                salida = new DataOutputStream(conexion.getOutputStream());
+                
+                
+                
 
-                salida.writeUTF("Introduce un numero para calcular su factorial: ");
                 numero = entrada.readInt();
                 numeroFactorial = factorial(numero);
 

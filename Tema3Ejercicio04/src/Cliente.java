@@ -18,14 +18,14 @@ public class Cliente {
             entrada = new DataInputStream(conexion.getInputStream());
             salida = new DataOutputStream(conexion.getOutputStream());
             
-            
-            String mensajeRecibido = entrada.readUTF();
-            System.out.println(mensajeRecibido);
+            while(numero!=0){
+            String mensajeRecibido;
+            System.out.println("Introduce el numero: ");
             numero = sc.nextInt();
             salida.writeInt(numero);
             mensajeRecibido = entrada.readUTF();
             System.out.println(mensajeRecibido);     
-            
+            }
             
             entrada.close();
             salida.close();
