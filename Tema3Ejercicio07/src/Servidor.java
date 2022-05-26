@@ -19,7 +19,8 @@ public class Servidor {
             salida = new DataOutputStream(conexion.getOutputStream());
             
             int numeroRecibido=0,a,b, resultado; 
-           
+            
+            while(numeroRecibido!=5){
             numeroRecibido= entrada.readInt();
             switch (numeroRecibido) {
                 case 1:
@@ -64,6 +65,7 @@ public class Servidor {
                     salida.writeUTF("Introduce un numero valido.");
                     System.out.println("Introduce un numero valido.");
                     break;
+            }
             }
            
             }

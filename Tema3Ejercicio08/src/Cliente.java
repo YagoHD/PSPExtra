@@ -15,7 +15,7 @@ public class Cliente {
             entrada = new DataInputStream(conexion.getInputStream());
             salida = new DataOutputStream(conexion.getOutputStream());
             
-            System.out.println("Escribe mensajes el servidor de los mandara de vuelta, para salir escribe Adios");
+            System.out.println("Escribe mensajes el servidor te los mandara de vuelta, para salir escribe Adios");
             String mensajeEnviado;
             mensajeEnviado=sc.nextLine();
             salida.writeUTF(mensajeEnviado);

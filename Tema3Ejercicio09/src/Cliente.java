@@ -15,17 +15,15 @@ public class Cliente {
             
             Scanner sc= new Scanner(System.in);
             String mensajeEnviado, mensajeRecibido;
-            System.out.print("Servidor: ");
             System.out.println(entrada.readUTF());
             System.out.print("Cliente: ");
             mensajeEnviado = sc.nextLine();
-            do{
-            salida.writeUTF(mensajeEnviado);
-            System.out.print("Servidor: ");
-            System.out.println(entrada.readUTF());
-            System.out.print("Cliente: ");
-            mensajeEnviado = sc.nextLine();
-            }while (!"Adios".equals(mensajeEnviado));
+            while (!"Adios".equals(mensajeEnviado)){
+                salida.writeUTF(mensajeEnviado);
+                System.out.println( entrada.readUTF() );
+                System.out.print("Cliente: ");
+                mensajeEnviado = sc.nextLine();
+            }
             salida.writeUTF(mensajeEnviado);
             entrada.close();
             salida.close();

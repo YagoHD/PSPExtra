@@ -21,18 +21,19 @@ public class Servidor {
                     salida = new DataOutputStream(conexion.getOutputStream());
                     String mensajeEnviado, mensajeReibido;
 
-                    salida.writeUTF("Bienvenido");
+                    salida.writeUTF("Servidor: Bienvenido");
                     mensajeReibido = entrada.readUTF();
-                    System.out.print("Cliente: ");
-                    System.out.println(mensajeReibido);
+                    System.out.println("Cliente: " +mensajeReibido);
+                    
                     while(!"Adios".equals(mensajeReibido)){
                         System.out.print("Servidor: ");
-                        mensajeEnviado = sc.nextLine();
+                        mensajeEnviado = "Servidor: "+sc.nextLine();
                         salida.writeUTF(mensajeEnviado);
                         mensajeReibido = entrada.readUTF();
-                        System.out.print("Cliente: ");
-                        System.out.println(mensajeReibido);
+                        System.out.println("Cliente: "+ mensajeReibido);
+                   
                     }
+                    System.out.println("Cliente desconectado");
                     entrada.close();
                     salida.close();
                     conexion.close();
