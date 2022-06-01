@@ -2,29 +2,32 @@ import java.io.*;
 import java.net.*;
 
 public class Cliente {
+    static DataInputStream entrada;
+    static DataOutputStream salida;
+    static Socket conexion;
 	public static void main(String[] args) {
 		
 		try {
 			String id_fichero = "4";
-			Socket clientSocket = new Socket();
-			InetSocketAddress addr = new InetSocketAddress("localhost", 5555);
-			clientSocket.connect(addr);
-			InputStream is = clientSocket.getInputStream();
-			OutputStream os = clientSocket.getOutputStream();
+			conexion = new Socket("localhost", 5000);
+			entrada = new DataInputStream(conexion.getInputStream());
+                        salida = new DataOutputStream(conexion.getOutputStream());
+                        
+                        
 			//Crea un PrintWriter a partir de un OutputStream que ya existe
-			PrintWriter pw = new PrintWriter(os, true);
+			PrintWriter pw = new PrintWriter(salida, true);
 			System.out.println("Descargando fichero "+id_fichero);
 			
 			pw.println(id_fichero);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			BufferedReader br = new BufferedReader(new InputStreamReader(entrada));
 			char buffer[] = new char[1]; 
 			while (br.read(buffer) != -1) {
 				System.out.print(buffer[0]);   
 			}
-
-			clientSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+                        
+			conexion.close();
+                        entrada.close();
+                        salida.close();
+		} catch (IOException e) {e.printStackTrace();}
 	}
 }

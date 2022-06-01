@@ -25,7 +25,9 @@ public class Cliente {
                 mensajeEnviado=sc.nextLine();
                 salida.writeUTF(mensajeEnviado);
             }
-        } catch (IOException e) {System.out.println("Error");
-        }
+            conexion.close();
+            entrada.close();
+            salida.close();
+        } catch (IOException e) {System.out.println("Error");}
     }
 }

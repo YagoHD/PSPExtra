@@ -27,12 +27,8 @@ public class Servidor {
                     entrada.close();
                     salida.close();
                     conexion.close();
-                } catch (Exception e) {
-                    System.out.println("Conexion error");
-                }
-
+                } catch (Exception e) {System.out.println("Conexion error");}
             }
-        } catch (IOException e) {System.out.println("Error");
-        }
+        } catch (IOException e) {System.out.println("Error");}
     }
 }
