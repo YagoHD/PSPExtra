@@ -8,25 +8,28 @@ public class Cliente {
     static Socket conexion;
     
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String mensajeRecibido, mensajeEnviado;
         try {
-            Scanner sc = new Scanner(System.in);
             conexion = new Socket("localhost", 5000);
-            System.out.println("Conectado al servidor");
             entrada = new DataInputStream(conexion.getInputStream());
             salida = new DataOutputStream(conexion.getOutputStream());
             
-            System.out.println("Escribe mensajes el servidor te los mandara de vuelta, para salir escribe Adios");
-            String mensajeEnviado = sc.nextLine(); 
+            System.out.println("Servidor: Bienvenido");
+            System.out.print("Cliente: ");
+            mensajeEnviado = sc.nextLine();
             salida.writeUTF(mensajeEnviado);
-            
-            while(!"Adios".equals(mensajeEnviado) ){
-                System.out.println(entrada.readUTF());
-                mensajeEnviado=sc.nextLine();
+            while(!"Adios".equals(mensajeEnviado)){
+                System.out.print("Servidor: ");
+                mensajeRecibido = entrada.readUTF();
+                System.out.println(mensajeRecibido);
+                System.out.print("Cliente: ");
+                mensajeEnviado = sc.nextLine();
                 salida.writeUTF(mensajeEnviado);
             }
-            conexion.close();
             entrada.close();
             salida.close();
-        } catch (IOException e) {System.out.println("Error");}
+            conexion.close();
+        } catch (Exception e) {System.out.println("Error");}
     }
 }
